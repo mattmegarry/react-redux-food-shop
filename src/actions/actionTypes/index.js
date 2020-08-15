@@ -1,0 +1,1 @@
+export const ADD_FOOD_TO_SHOPPING = "ADD_FOOD_TO_SHOPPING";

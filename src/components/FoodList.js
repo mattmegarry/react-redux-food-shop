@@ -6,7 +6,7 @@ const FoodList = () => {
   return (
     <div className="food-list">
       {foods.map(food => (
-        <Food name={food.name} price={food.price} />
+        <Food key={food.name} name={food.name} price={food.price} />
       ))}
     </div>
   );

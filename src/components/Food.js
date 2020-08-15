@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { addFoodToShopping } from "../actions/foods";
 
 const Food = props => {
   const { name, price } = props;
@@ -6,9 +8,20 @@ const Food = props => {
     <div className="food">
       <p>{name}</p>
       <p>£{price}</p>
-      <button>Add One</button>
+      <button onClick={() => props.addFoodToShopping({ name, price })}>
+        Add One
+      </button>
     </div>
   );
 };
 
-export default Food;
+const mapDispatchToProps = dispatch => {
+  return {
+    addFoodToShopping: payload => dispatch(addFoodToShopping(payload))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Food);
