@@ -19,22 +19,14 @@ const foodsReducer = (state = initialState, action) => {
             food => food.name === name
           );
 
-          let updatedShoppingCart = [];
-
           if (matchedIndex !== -1) {
-            updatedShoppingCart = [...shoppingCart];
-            updatedShoppingCart[matchedIndex].quantity =
-              updatedShoppingCart[matchedIndex].quantity + 1;
-          } else {
-            updatedShoppingCart = shoppingCart.concat([
-              {
-                name,
-                price,
-                quantity: 1
-              }
-            ]);
+            return shoppingCart.map((item, index) =>
+              index === matchedIndex
+                ? { ...item, quantity: item.quantity + 1 }
+                : item
+            );
           }
-          return updatedShoppingCart;
+          return shoppingCart.concat({ name, price, quantity: 1 });
         })()
       };
     case REMOVE_FOOD_FROM_SHOPPING:
