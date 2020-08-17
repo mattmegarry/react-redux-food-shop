@@ -1,13 +1,71 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+@import "./reset.css";
+
+/* -- TYPOGRAPHY -- */
+
+h1,
+h2,
+p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* -- LAYOUT -- */
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section {
+  margin: 2rem;
+  width: 80vw;
+  max-width: 500px;
+}
+
+/* -- COMPONENTS -- */
+.header {
+  text-align: center;
+}
+
+.food-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.food {
+  margin: 1rem 1rem 1rem 0;
+}
+
+.shopping-cart > h2 {
+  margin-bottom: 0.3rem;
+}
+
+.cart-row {
+  display: flex;
+}
+
+.cart-name {
+  width: 60%;
+}
+
+.cart-quantity {
+  width: 10%;
+}
+
+.cart-row-price {
+  width: 30%;
+  text-align: right;
 }
