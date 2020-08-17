@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addFoodToShopping } from "../actions/foods";
+import { addFoodToShopping, removeFoodFromShopping } from "../actions/foods";
 import Dinero from "dinero.js";
 
 const ShoppingCart = props => {
@@ -14,7 +14,9 @@ const ShoppingCart = props => {
             <div className="cart-row" key={name}>
               <p className="cart-name">{name}</p>
               <div className="cart-quantity-buttons">
-                <button>-</button>
+                <button onClick={() => props.removeFoodFromShopping({ name })}>
+                  -
+                </button>
                 <p className="cart-quantity">{quantity}</p>
                 <button
                   onClick={() => props.addFoodToShopping({ name, price })}
@@ -43,7 +45,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFoodToShopping: payload => dispatch(addFoodToShopping(payload))
+    addFoodToShopping: payload => dispatch(addFoodToShopping(payload)),
+    removeFoodFromShopping: payload => dispatch(removeFoodFromShopping(payload))
   };
 };
 

@@ -1,4 +1,7 @@
-import { ADD_FOOD_TO_SHOPPING } from "../actions/actionTypes";
+import {
+  ADD_FOOD_TO_SHOPPING,
+  REMOVE_FOOD_FROM_SHOPPING
+} from "../actions/actionTypes";
 
 const initialState = {
   shoppingCart: []
@@ -32,6 +35,19 @@ const foodsReducer = (state = initialState, action) => {
             ]);
           }
           return updatedShoppingCart;
+        })()
+      };
+    case REMOVE_FOOD_FROM_SHOPPING:
+      return {
+        ...state,
+        shoppingCart: (() => {
+          return shoppingCart.flatMap(item => {
+            return item.name === name
+              ? item.quantity <= 1
+                ? []
+                : { ...item, quantity: item.quantity - 1 }
+              : item;
+          });
         })()
       };
     default:
