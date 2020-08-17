@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { addFoodToShopping } from "../actions/foods";
 import Dinero from "dinero.js";
 
 const ShoppingCart = props => {
@@ -7,17 +8,28 @@ const ShoppingCart = props => {
     <div className="shopping-cart section">
       <h2>Your Items</h2>
       <div>
-        {props.shoppingCart.map(item => (
-          <div className="cart-row" key={item.name}>
-            <p className="cart-name">{item.name}</p>
-            <p className="cart-quantity">{item.quantity}</p>
-            <p className="cart-row-price">
-              {Dinero({ amount: item.price, currency: "GBP" })
-                .multiply(item.quantity)
-                .toFormat("$0,0.00")}
-            </p>
-          </div>
-        ))}
+        {props.shoppingCart.map(item => {
+          const { name, price, quantity } = item;
+          return (
+            <div className="cart-row" key={name}>
+              <p className="cart-name">{name}</p>
+              <div className="cart-quantity-buttons">
+                <button>-</button>
+                <p className="cart-quantity">{quantity}</p>
+                <button
+                  onClick={() => props.addFoodToShopping({ name, price })}
+                >
+                  +
+                </button>
+              </div>
+              <p className="cart-row-price">
+                {Dinero({ amount: price, currency: "GBP" })
+                  .multiply(quantity)
+                  .toFormat("$0,0.00")}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -29,7 +41,13 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    addFoodToShopping: payload => dispatch(addFoodToShopping(payload))
+  };
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(ShoppingCart);

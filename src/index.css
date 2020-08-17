@@ -58,14 +58,21 @@ h2 {
 }
 
 .cart-name {
-  width: 60%;
+  width: 50%;
+}
+
+.cart-quantity-buttons {
+  display: flex;
+  width: 30%;
 }
 
 .cart-quantity {
-  width: 10%;
+  width: 1.5rem;
+  padding: 0 0.5rem 0 0.5rem;
+  text-align: right;
 }
 
 .cart-row-price {
-  width: 30%;
+  width: 20%;
   text-align: right;
 }
